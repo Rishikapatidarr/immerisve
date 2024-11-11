@@ -4,14 +4,11 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 
-const SignUp = () => {
+const LogIn = () => {
   const [input, setInput] = useState({
-    fullname: "",
     username: "",
-    email: "",
+
     password: "",
-    profession: "",
-    aboutYou: "",
   });
 
   const changeEventHandler = (e) => {
@@ -19,16 +16,13 @@ const SignUp = () => {
   };
   const signupHandler = (e) => {
     e.preventDefault();
-    toast.success("sign Up successful");
+    toast.success("LogIn successful");
     console.log(input);
 
     setInput({
-      fullname: "",
       username: "",
-      email: "",
+
       password: "",
-      profession: "",
-      aboutYou: "",
     });
   };
   return (
@@ -43,16 +37,7 @@ const SignUp = () => {
             Welcome to our website Sign Up for More Information
           </p>
         </div>
-        <div>
-          <Label className="text-base">Full Name</Label>
-          <Input
-            type="text"
-            name="fullname"
-            value={input.fullname}
-            onChange={changeEventHandler}
-            className="focus-visible:ring-transparent my-2"
-          />
-        </div>
+
         <div>
           <Label className="text-base">username</Label>
           <Input
@@ -63,16 +48,7 @@ const SignUp = () => {
             className="focus-visible:ring-transparent my-2"
           />
         </div>
-        <div>
-          <Label className="text-base">Email</Label>
-          <Input
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={changeEventHandler}
-            className="focus-visible:ring-transparent my-2"
-          />
-        </div>
+
         <div>
           <Label className="text-base">Password</Label>
           <Input
@@ -83,36 +59,17 @@ const SignUp = () => {
             className="focus-visible:ring-transparent my-2"
           />
         </div>
-        <div>
-          <Label className="text-base">profession</Label>
-          <Input
-            type="text"
-            name="profession"
-            value={input.profession}
-            onChange={changeEventHandler}
-            className="focus-visible:ring-transparent my-2"
-          />
-        </div>
-        <div>
-          <Label className="text-base">About you</Label>
-          <Input
-            type="text"
-            name="aboutYou"
-            value={input.aboutYou}
-            onChange={changeEventHandler}
-            className="focus-visible:ring-transparent my-2"
-          />
-        </div>
+
         <Button
           type="submit"
           className="bg-blue-950 focus-visible:ring-transparent text-white hover:bg-blue-900"
         >
-          {" "}
-          Sign Up
+          
+          LogIn
         </Button>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default LogIn;
