@@ -3,6 +3,9 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import { Link, useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const SignUp = () => {
   const [input, setInput] = useState({
@@ -13,14 +16,20 @@ const SignUp = () => {
     profession: "",
     aboutYou: "",
   });
+  const [loading, setLoading] = useState(false);
+  const {user} = useSelector(store=>store.auth);
+  const navigate=useNavigate();
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const signupHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
     toast.success("sign Up successful");
     console.log(input);
+    setLoading(false);
+    navigate("/")
 
     setInput({
       fullname: "",
@@ -30,7 +39,16 @@ const SignUp = () => {
       profession: "",
       aboutYou: "",
     });
+
+    
   };
+
+
+//   useEffect(()=>{
+//     if(user){
+//         navigate("/");
+//     }
+// },[])
   return (
     <div className="flex items-center w-screen h-screen justify-center">
       <form
@@ -103,13 +121,25 @@ const SignUp = () => {
             className="focus-visible:ring-transparent my-2"
           />
         </div>
-        <Button
+        {
+          loading?(<Button>
+            <Loader2 className='mr-2 h-4 w-4 animate-spin'/>
+            Please wait
+        </Button>):(<Button
           type="submit"
           className="bg-blue-950 focus-visible:ring-transparent text-white hover:bg-blue-900"
         >
+          SignUp
+        </Button>)
+        }
+
+        <span className="text-center text-xl">
           {" "}
-          Sign Up
-        </Button>
+          already have an account?{" "}
+          <Link to="/login" className="text-blue-600 no-underline">
+            LogIn
+          </Link>
+        </span>
       </form>
     </div>
   );
